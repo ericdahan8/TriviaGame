@@ -109,6 +109,7 @@ $("#submit").on("click", function() {
   $(".row").hide();
   $("#submit").hide();
   $("#results").show();
+  $("#results2").show();
   $("#reset").show();
 
   $("#results").text("Time is up! " + "Results:  " + correct + "/9 Correct");
@@ -125,4 +126,5 @@ $("#reset").on("click", function() {
   $("#reset").hide();
   $("#submit").show();
   $("#results").hide();
+  $("#results2").hide();
 });
