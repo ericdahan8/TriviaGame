@@ -1,14 +1,14 @@
-var timeleft = 30;
+var time = 60;
 
 var timer = setInterval(function() {
-  document.getElementById("progressBar").value = 30 - timeleft;
-  timeleft -= 1;
-  document.getElementById("countdown").innerHTML = timeleft + " seconds left";
-  if (timeleft <= 0) {
+  document.getElementById("progressBar").value = 60 - time;
+  time -= 1;
+  document.getElementById("countdown").innerHTML = time + " seconds left";
+  if (time <= 0) {
     clearInterval(timer);
     document.getElementById("countdown").innerHTML = "Finished";
   }
-  if (timeleft <= 0) {
+  if (time <= 0) {
     clearInterval(timer);
     $(".row").hide();
     $("#submit").hide();
@@ -27,8 +27,6 @@ var incorrect = 0;
 var unanswered = 0;
 $(".results").hide();
 $("#reset").hide();
-
-//9 different if statements or else ischecked - submit button on click
 
 //if statements indicating to fill the variable with correct or incorrect
 $(".question1").click(function() {
@@ -118,6 +116,7 @@ $("#submit").on("click", function() {
 
 //RESET FUNCTION
 $("#reset").on("click", function() {
+  clearInterval(timer);
   var correct = 0;
   var incorrect = 0;
   var unanswered = 0;
@@ -127,4 +126,28 @@ $("#reset").on("click", function() {
   $("#submit").show();
   $("#results").hide();
   $("#results2").hide();
+
+  time = 60;
+
+  timer = setInterval(function() {
+    document.getElementById("progressBar").value = 60 - time;
+    time -= 1;
+    document.getElementById("countdown").innerHTML = time + " seconds left";
+    if (time <= 0) {
+      clearInterval(timer);
+      document.getElementById("countdown").innerHTML = "Finished";
+    }
+    if (time <= 0) {
+      clearInterval(timer);
+      $(".row").hide();
+      $("#submit").hide();
+      $("#results").show();
+      $("#reset").show();
+
+      $("#results").text(
+        "Time is up! " + "Results:  " + correct + "/9 Correct"
+      );
+      $("#results2").text(incorrect + "/9 incorrect");
+    }
+  }, 1000);
 });
